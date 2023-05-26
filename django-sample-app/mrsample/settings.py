@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'health_check',
+    'health_check.db',                          
     "rest_framework",
     "blog",
 ]
@@ -77,10 +79,6 @@ WSGI_APPLICATION = "mrsample.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-
-
-
 db_user = os.environ.get('db_user', 'dev@#User')
 db_pass = os.environ.get('db_pass', 'dev@#password')
 db_host = os.environ.get('db_host', '127.0.0.1')
