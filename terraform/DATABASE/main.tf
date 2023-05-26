@@ -33,47 +33,47 @@ resource "aws_db_instance" "mysql_instance" {
   parameter_group_name   = "default.mysql5.7"
   vpc_security_group_ids = [aws_security_group.mysql_sg.id]
   publicly_accessible    = true
-  skip_final_snapshot = true
+  skip_final_snapshot    = true
 }
 
 
 # Creating a AWS Secret for mysql username for the django app
-resource "aws_secretsmanager_secret" "mysql_username" {
-  name        = "mysql_username"
-  description = "mysql username for the django app"
+resource "aws_secretsmanager_secret" "db_username" {
+  name                    = "db_username"
+  description             = "mysql username for the django app"
   recovery_window_in_days = 0
   tags = {
-    Name        = "mysql_username"
+    Name = "db_username"
   }
 }
 
-resource "aws_secretsmanager_secret_version" "mysql_username_version" {
-  secret_id     = aws_secretsmanager_secret.mysql_username.id
+resource "aws_secretsmanager_secret_version" "db_username_version" {
+  secret_id     = aws_secretsmanager_secret.db_username.id
   secret_string = var.db_username
 }
 
 # Creating a AWS Secret for Password username for the django app
-resource "aws_secretsmanager_secret" "mysql_password" {
-  name        = "mysql_password"
-  description = "mysql Password for the django app"
+resource "aws_secretsmanager_secret" "db_password" {
+  name                    = "db_password"
+  description             = "mysql Password for the django app"
   recovery_window_in_days = 0
   tags = {
-    Name        = "mysql_password"
+    Name = "db_password"
   }
 }
-resource "aws_secretsmanager_secret_version" "mysql_password_version" {
-  secret_id     = aws_secretsmanager_secret.mysql_password.id
+resource "aws_secretsmanager_secret_version" "db_password_version" {
+  secret_id     = aws_secretsmanager_secret.db_password.id
   secret_string = var.db_password
 }
 
 
 ## reating a AWS Secret for Password mysql_url for the django app
 resource "aws_secretsmanager_secret" "mysql_url" {
-  name        = "mysql_url"
-  description = "mysql Password for the django app"
+  name                    = "db_host"
+  description             = "mysql Password for the django app"
   recovery_window_in_days = 0
   tags = {
-    Name        = "mysql_url"
+    Name = "mysql_url"
   }
 }
 
@@ -87,11 +87,11 @@ resource "aws_secretsmanager_secret_version" "mysql_url_version" {
 
 ## Creating a AWS Secret for DB name for the django app
 resource "aws_secretsmanager_secret" "db_name" {
-  name        = "db_name"
-  description = "mysql host for the django app"
+  name                    = "db_name_dev"
+  description             = "mysql host for the django app"
   recovery_window_in_days = 0
   tags = {
-    Name        = "db_name"
+    Name = "db_name"
   }
 }
 resource "aws_secretsmanager_secret_version" "db_host_version" {

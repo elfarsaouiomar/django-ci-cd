@@ -12,21 +12,21 @@ resource "aws_internet_gateway" "my_igw" {
 # Create a subnet 1
 resource "aws_subnet" "ecs_subnet_A" {
   vpc_id            = aws_vpc.ecs_vpc.id
-  cidr_block        = "10.0.0.0/24" 
+  cidr_block        = "10.0.0.0/24"
   availability_zone = "us-east-1a"
 }
 
 # Create a subnet 2
 resource "aws_subnet" "ecs_subnet_B" {
   vpc_id            = aws_vpc.ecs_vpc.id
-  cidr_block        = "10.0.1.0/24" 
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1b"
 }
 
 # Create a subnet 3
 resource "aws_subnet" "ecs_subnet_C" {
   vpc_id            = aws_vpc.ecs_vpc.id
-  cidr_block        = "10.0.2.0/24" 
+  cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-1c"
 }
 

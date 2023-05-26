@@ -1,3 +1,4 @@
-# output "cluster_name" {
-#   value = aws_ecs_cluster.my_cluster.name
-# }
+output "load_balancer_dns" {
+  value       = aws_lb.my_lb.dns_name
+  description = "Get The Load Balancer DNS Name"
+}

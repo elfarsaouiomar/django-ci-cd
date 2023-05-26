@@ -13,14 +13,17 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_ecr_repository" "public_ecr" {
-  name                 = var.repo_name
-  image_tag_mutability = "MUTABLE"
 
-  image_scanning_configuration {
-    scan_on_push = true
+resource "aws_ecrpublic_repository" "container_repository" {
+  repository_name = var.repo_name
+  catalog_data {
+    about_text  = "Django repo"
+    description = "Description"
+    usage_text  = "Usage Text"
   }
-  lifecycle {
-    ignore_changes = [image_tag_mutability]
+
+  tags = {
+    env  = "production"
+    name = "django"
   }
 }
