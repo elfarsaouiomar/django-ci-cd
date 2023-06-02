@@ -1,19 +1,3 @@
-# Initialize the Terraform configuration
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 3.0.0"
-    }
-  }
-}
-
-# Configure the AWS provider
-provider "aws" {
-  region = var.region
-}
-
-
 # Create a VPC 
 resource "aws_vpc" "ecs_vpc" {
   cidr_block = "10.0.0.0/16" # Replace with your desired VPC CIDR block
@@ -21,16 +5,16 @@ resource "aws_vpc" "ecs_vpc" {
 
 # MySQL db
 resource "aws_db_instance" "mysql_instance" {
-  identifier             = "my-mysql-instance"
-  allocated_storage      = 20
-  storage_type           = "gp2"
-  engine                 = "mysql"
-  engine_version         = "5.7"
-  instance_class         = "db.t2.micro"
+  identifier             = var.identifier
+  allocated_storage      = var.allocated_storage
+  storage_type           = var.storage_type
+  engine                 = var.db_engine
+  engine_version         = var.engine_version
+  instance_class         = var.instance_class
   db_name                = var.db_name
   username               = var.db_username
   password               = var.db_password
-  parameter_group_name   = "default.mysql5.7"
+  parameter_group_name   = var.parameter_group_name
   vpc_security_group_ids = [aws_security_group.mysql_sg.id]
   publicly_accessible    = true
   skip_final_snapshot    = true

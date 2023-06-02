@@ -10,11 +10,11 @@ https://www.youtube.com/watch?v=bT19B3IBWHE&ab_channel=PavanKumarAleti
 
 
 ### first thing.
-create an ERC to host the container, in order to create the ECR you need to run.
+create an ECR to host the container, in order to create the ECR you need to run.
 
 $ cd ECR 
 $ terraform init
-$ terraform
+$ terraform destroy -auto-approve 
 
 after that we need to configure the access to the repo
 Use the following steps to authenticate and push an image to your repository. For additional registry authentication methods, including the Amazon ECR credential helper, see Registry Authentication .

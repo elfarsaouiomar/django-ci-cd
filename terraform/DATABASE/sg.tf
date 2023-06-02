@@ -1,8 +1,9 @@
 # Allow access to mysql
 resource "aws_security_group" "mysql_sg" {
-  name        = "mysql-sg"
-  description = "Allow inbound MySQL traffic"
+  name        = "mysql-${env}-sg"
+  description = "Allow inbound MySQL traffic ${env}"
 
+  # TODO: allow only incoming requests from the ECS 
   ingress {
     from_port   = 3306
     to_port     = 3306
@@ -17,3 +18,4 @@ resource "aws_security_group" "mysql_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
